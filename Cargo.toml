@@ -1,0 +1,12 @@
+[package]
+name = "nav"
+version = "0.0.0"
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/FreddyWordingham/Nav"
+description = "A Rust library for handling cardinal directions and transformations."
+keywords = ["direction", "cardinal-directions", "compass", "rotation"]
+categories = ["algorithms", "data-structures", "science"]
+
+[dependencies]
+num_enum = "0.7.3"
