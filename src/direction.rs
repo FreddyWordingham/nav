@@ -1,5 +1,8 @@
 use num_enum::{IntoPrimitive, TryFromPrimitive};
-use std::fmt::{Display, Formatter};
+use std::{
+    fmt::{Display, Formatter},
+    str::FromStr,
+};
 
 use crate::Transform;
 
@@ -18,7 +21,12 @@ pub enum Direction {
 }
 
 /// All cardinal directions in their order of definition.
-pub const ALL_DIRECTIONS: [Direction; 4] = [Direction::North, Direction::East, Direction::South, Direction::West];
+pub const ALL_DIRECTIONS: [Direction; 4] = [
+    Direction::North,
+    Direction::East,
+    Direction::South,
+    Direction::West, //
+];
 
 impl Direction {
     /// Applies a `Transform` to the current `Direction`.
@@ -36,6 +44,20 @@ impl Direction {
             Transform::FlipAntiDiagonal => (7 - v) % 4,
         })
         .unwrap()
+    }
+}
+
+impl FromStr for Direction {
+    type Err = &'static str;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s.to_uppercase().as_str() {
+            "N" | "NORTH" => Ok(Direction::North),
+            "E" | "EAST" => Ok(Direction::East),
+            "S" | "SOUTH" => Ok(Direction::South),
+            "W" | "WEST" => Ok(Direction::West),
+            _ => Err("Invalid direction, expected one of: N, E, S, W, North, East, South, West"),
+        }
     }
 }
 

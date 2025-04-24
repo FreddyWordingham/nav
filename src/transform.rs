@@ -1,4 +1,8 @@
 use num_enum::{IntoPrimitive, TryFromPrimitive};
+use std::{
+    fmt::{Display, Formatter},
+    str::FromStr,
+};
 
 /// The eight transformations that can be applied to a 2D grid.
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash, IntoPrimitive, TryFromPrimitive)]
@@ -33,3 +37,36 @@ pub const ALL_TRANSFORMS: [Transform; 8] = [
     Transform::FlipVertical,
     Transform::FlipAntiDiagonal,
 ];
+
+impl FromStr for Transform {
+    type Err = &'static str;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s.to_uppercase().as_str() {
+            "I" => Ok(Transform::Identity),
+            "R" => Ok(Transform::Rotate90),
+            "U" => Ok(Transform::Rotate180),
+            "L" => Ok(Transform::Rotate270),
+            "|" => Ok(Transform::FlipHorizontal),
+            "/" => Ok(Transform::FlipDiagonal),
+            "-" => Ok(Transform::FlipVertical),
+            "\\" => Ok(Transform::FlipAntiDiagonal),
+            _ => Err("Invalid transform, expected one of: I, R, U, L, |, /, -, \\"),
+        }
+    }
+}
+
+impl Display for Transform {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Transform::Identity => write!(f, "I"),
+            Transform::Rotate90 => write!(f, "R"),
+            Transform::Rotate180 => write!(f, "U"),
+            Transform::Rotate270 => write!(f, "L"),
+            Transform::FlipHorizontal => write!(f, "|"),
+            Transform::FlipDiagonal => write!(f, "/"),
+            Transform::FlipVertical => write!(f, "-"),
+            Transform::FlipAntiDiagonal => write!(f, "\\"),
+        }
+    }
+}
