@@ -9,7 +9,7 @@ fn identity() {
         (Direction::West, Transform::Identity, Direction::West),
     ];
     for (d, t, e) in table {
-        assert_eq!(d.transform(t), e);
+        assert_eq!(d * t, e);
     }
 }
 
@@ -22,7 +22,7 @@ fn rotate_90() {
         (Direction::West, Transform::Rotate90, Direction::North),
     ];
     for (d, t, e) in table {
-        assert_eq!(d.transform(t), e);
+        assert_eq!(d * t, e);
     }
 }
 
@@ -35,7 +35,7 @@ fn rotate_180() {
         (Direction::West, Transform::Rotate180, Direction::East),
     ];
     for (d, t, e) in table {
-        assert_eq!(d.transform(t), e);
+        assert_eq!(d * t, e);
     }
 }
 
@@ -48,7 +48,7 @@ fn rotate_270() {
         (Direction::West, Transform::Rotate270, Direction::South),
     ];
     for (d, t, e) in table {
-        assert_eq!(d.transform(t), e);
+        assert_eq!(d * t, e);
     }
 }
 
@@ -61,7 +61,7 @@ fn flip_horizontal() {
         (Direction::West, Transform::FlipHorizontal, Direction::East),
     ];
     for (d, t, e) in table {
-        assert_eq!(d.transform(t), e);
+        assert_eq!(d * t, e);
     }
 }
 
@@ -74,7 +74,7 @@ fn flip_diagonal() {
         (Direction::West, Transform::FlipDiagonal, Direction::South),
     ];
     for (d, t, e) in table {
-        assert_eq!(d.transform(t), e);
+        assert_eq!(d * t, e);
     }
 }
 
@@ -87,7 +87,7 @@ fn flip_vertical() {
         (Direction::West, Transform::FlipVertical, Direction::West),
     ];
     for (d, t, e) in table {
-        assert_eq!(d.transform(t), e);
+        assert_eq!(d * t, e);
     }
 }
 
@@ -100,6 +100,6 @@ fn flip_anti_diagonal() {
         (Direction::West, Transform::FlipAntiDiagonal, Direction::North),
     ];
     for (d, t, e) in table {
-        assert_eq!(d.transform(t), e);
+        assert_eq!(d * t, e);
     }
 }

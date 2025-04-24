@@ -1,6 +1,7 @@
 use num_enum::{IntoPrimitive, TryFromPrimitive};
 use std::{
     fmt::{Display, Formatter},
+    ops::Mul,
     str::FromStr,
 };
 
@@ -28,16 +29,16 @@ pub const ALL_DIRECTIONS: [Direction; 4] = [
     Direction::West, //
 ];
 
-impl Direction {
+impl Mul<Transform> for Direction {
+    type Output = Self;
+
     /// Applies a `Transform` to the current `Direction`.
     ///
     /// # Panics
     ///
     /// This function uses `unwrap()` internally but will never panic because the
-    /// transformation math guarantees that the result will always be a valid
-    /// `Direction` value (0-3).
-    #[must_use]
-    pub fn transform(self, transform: Transform) -> Self {
+    /// transformation math guarantees that the result will always be a valid `Direction` value (0-3).
+    fn mul(self, transform: Transform) -> Self::Output {
         let v: u8 = self.into();
         Direction::try_from(match transform {
             Transform::Identity => v,
