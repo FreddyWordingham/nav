@@ -30,6 +30,12 @@ pub const ALL_DIRECTIONS: [Direction; 4] = [
 
 impl Direction {
     /// Applies a `Transform` to the current `Direction`.
+    ///
+    /// # Panics
+    ///
+    /// This function uses `unwrap()` internally but will never panic because the
+    /// transformation math guarantees that the result will always be a valid
+    /// `Direction` value (0-3).
     #[must_use]
     pub fn transform(self, transform: Transform) -> Self {
         let v: u8 = self.into();
