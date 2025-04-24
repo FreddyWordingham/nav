@@ -39,6 +39,26 @@ pub const ALL_TRANSFORMS: [Transform; 8] = [
     Transform::FlipAntiDiagonal,
 ];
 
+impl Transform {
+    /// Returns true if the `Transform` is the `Identity` `Transform`.
+    pub fn is_identity(self) -> bool {
+        self == Transform::Identity
+    }
+
+    /// Returns true if the `Transform` is a rotation.
+    pub fn is_rotation(self) -> bool {
+        matches!(self, Transform::Rotate90 | Transform::Rotate180 | Transform::Rotate270)
+    }
+
+    /// Returns true if the `Transform` is a flip.
+    pub fn is_flip(self) -> bool {
+        matches!(
+            self,
+            Transform::FlipHorizontal | Transform::FlipDiagonal | Transform::FlipVertical | Transform::FlipAntiDiagonal
+        )
+    }
+}
+
 impl Mul for Transform {
     type Output = Self;
 

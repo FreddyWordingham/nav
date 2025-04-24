@@ -29,6 +29,28 @@ pub const ALL_DIRECTIONS: [Direction; 4] = [
     Direction::West, //
 ];
 
+impl Direction {
+    /// Returns true if the `Direction` is `North` or `South`.
+    pub fn is_vertical(self) -> bool {
+        matches!(self, Direction::North | Direction::South)
+    }
+
+    /// Returns true if the `Direction` is `East` or `West`.
+    pub fn is_horizontal(self) -> bool {
+        matches!(self, Direction::East | Direction::West)
+    }
+
+    /// Returns the opposite direction.
+    pub fn opposite(self) -> Self {
+        match self {
+            Direction::North => Direction::South,
+            Direction::East => Direction::West,
+            Direction::South => Direction::North,
+            Direction::West => Direction::East,
+        }
+    }
+}
+
 impl Mul<Transform> for Direction {
     type Output = Self;
 
