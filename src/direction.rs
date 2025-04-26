@@ -11,6 +11,14 @@ use num_enum::{IntoPrimitive, TryFromPrimitive};
 
 use crate::Transform;
 
+/// All cardinal directions in their order of definition.
+pub const ALL_DIRECTIONS: [Direction; 4] = [
+    Direction::North,
+    Direction::East,
+    Direction::South,
+    Direction::West, //
+];
+
 /// The four cardinal directions: North, East, South, and West.
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash, IntoPrimitive, TryFromPrimitive)]
 #[repr(u8)]
@@ -25,14 +33,6 @@ pub enum Direction {
     /// Leftwards
     West = 3,
 }
-
-/// All cardinal directions in their order of definition.
-pub const ALL_DIRECTIONS: [Direction; 4] = [
-    Direction::North,
-    Direction::East,
-    Direction::South,
-    Direction::West, //
-];
 
 impl Direction {
     /// Returns true if the `Direction` is `North` or `South`.

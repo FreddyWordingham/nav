@@ -34,12 +34,8 @@
 #![deny(unused_variables)]
 #![deny(unused)]
 #![deny(warnings)]
-#![allow(clippy::arbitrary_source_item_ordering, reason = "Unhelpful")]
 #![allow(clippy::arithmetic_side_effects, reason = "Too restrictive for this crate.")]
-#![allow(
-    clippy::blanket_clippy_restriction_lints,
-    reason = "This crate should not be considered suitable for cryptographic use."
-)]
+#![allow(clippy::blanket_clippy_restriction_lints, reason = "More lints are always better.")]
 #![allow(clippy::implicit_return, reason = "Implicit returns are idiomatic in Rust.")]
 #![allow(
     clippy::integer_division_remainder_used,

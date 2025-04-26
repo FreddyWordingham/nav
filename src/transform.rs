@@ -9,6 +9,18 @@ use core::{
 };
 use num_enum::{IntoPrimitive, TryFromPrimitive};
 
+/// All transformations in their order of definition.
+pub const ALL_TRANSFORMS: [Transform; 8] = [
+    Transform::Identity,
+    Transform::Rotate90,
+    Transform::Rotate180,
+    Transform::Rotate270,
+    Transform::FlipHorizontal,
+    Transform::FlipDiagonal,
+    Transform::FlipVertical,
+    Transform::FlipAntiDiagonal,
+];
+
 /// The eight transformations that can be applied to a 2D grid.
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash, IntoPrimitive, TryFromPrimitive)]
 #[repr(u8)]
@@ -31,18 +43,6 @@ pub enum Transform {
     /// Flip around the anti-diagonal:      (x, y) -> (-y, -x)
     FlipAntiDiagonal = 7,
 }
-
-/// All transformations in their order of definition.
-pub const ALL_TRANSFORMS: [Transform; 8] = [
-    Transform::Identity,
-    Transform::Rotate90,
-    Transform::Rotate180,
-    Transform::Rotate270,
-    Transform::FlipHorizontal,
-    Transform::FlipDiagonal,
-    Transform::FlipVertical,
-    Transform::FlipAntiDiagonal,
-];
 
 impl Transform {
     /// Returns true if the `Transform` is the `Identity` `Transform`.
