@@ -1,6 +1,6 @@
 //! ## `transform`
 //!
-//! The `transform` module provides the `Transform` enum, which represents the dihedral group of order 8.
+//! The `transform` module provides the `Transform` enum, which represents the dihedral group D4.
 
 use core::{
     fmt::{Display, Formatter, Result as FmtResult},
