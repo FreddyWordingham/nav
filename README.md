@@ -1,10 +1,16 @@
-# Nav
+<p align="center" style="font-size: 2.5em">
+    Nav
+</p>
+<p align="center">
+    <img src="./assets/icon.png" alt="Nav Icon" width="200" style="border-radius: 5%; border: 2px solid #000;">
+</p>
+<p align="center" style="font-size: 1.5em">
+    A lightweight, minimal-dependency Rust library for handling cardinal directions and geometric transformations in 2D space.
+</p>
 
 [![crates.io](https://img.shields.io/crates/v/nav.svg)](https://crates.io/crates/nav)
 [![Documentation](https://docs.rs/nav/badge.svg)](https://docs.rs/nav)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-A lightweight, dependency-minimal Rust library for handling cardinal directions and geometric transformations in 2D space.
 
 ## Features
 
