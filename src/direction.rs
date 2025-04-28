@@ -4,7 +4,7 @@
 
 use core::{
     fmt::{Display, Formatter, Result as FmtResult},
-    ops::Mul,
+    ops::{Mul, MulAssign, Neg},
     str::FromStr,
 };
 use num_enum::{IntoPrimitive, TryFromPrimitive};
@@ -48,18 +48,6 @@ impl Direction {
     pub const fn is_horizontal(self) -> bool {
         matches!(self, Self::East | Self::West)
     }
-
-    /// Returns the opposite direction.
-    #[inline]
-    #[must_use]
-    pub const fn opposite(self) -> Self {
-        match self {
-            Self::North => Self::South,
-            Self::East => Self::West,
-            Self::South => Self::North,
-            Self::West => Self::East,
-        }
-    }
 }
 
 impl Mul<Transform> for Direction {
@@ -90,6 +78,26 @@ impl Mul<Transform> for Direction {
             Transform::FlipAntiDiagonal => (7 - v) % 4,
         })
         .unwrap()
+    }
+}
+impl MulAssign<Transform> for Direction {
+    /// Applies a `Transform` to the current `Direction`.
+    #[inline]
+    fn mul_assign(&mut self, rhs: Transform) {
+        *self = *self * rhs;
+    }
+}
+
+impl Neg for Direction {
+    type Output = Self;
+    #[inline]
+    fn neg(self) -> Self::Output {
+        match self {
+            Self::North => Self::South,
+            Self::East => Self::West,
+            Self::South => Self::North,
+            Self::West => Self::East,
+        }
     }
 }
 
