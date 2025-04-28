@@ -49,7 +49,7 @@ assert!(north.is_vertical());
 assert!(east.is_horizontal());
 
 // Get opposite direction
-assert_eq!(north.opposite(), Direction::South);
+assert_eq!(-north, Direction::South);
 
 // Convert to/from strings
 assert_eq!(north.to_string(), "N");
