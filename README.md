@@ -27,7 +27,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-nav = "0.1.1"
+nav = "0.1.5"
 ```
 
 ## Usage
