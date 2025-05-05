@@ -2,12 +2,12 @@
 //!
 //! The `transform` module provides the `Transform` enum, which represents the dihedral group D4.
 
-use core::{
+use num_enum::{IntoPrimitive, TryFromPrimitive};
+use std::{
     fmt::{Display, Formatter, Result as FmtResult},
     ops::{Mul, MulAssign, Neg},
     str::FromStr,
 };
-use num_enum::{IntoPrimitive, TryFromPrimitive};
 
 /// All transformations in their order of definition.
 pub const ALL_TRANSFORMS: [Transform; 8] = [

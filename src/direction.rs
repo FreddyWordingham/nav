@@ -2,12 +2,12 @@
 //!
 //! The `direction` module provides the `Direction` enum, which represents the four cardinal directions: North, East, South, and West.
 
-use core::{
+use num_enum::{IntoPrimitive, TryFromPrimitive};
+use std::{
     fmt::{Display, Formatter, Result as FmtResult},
     ops::{Mul, MulAssign, Neg},
     str::FromStr,
 };
-use num_enum::{IntoPrimitive, TryFromPrimitive};
 
 use crate::Transform;
 
