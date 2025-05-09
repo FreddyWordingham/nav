@@ -80,6 +80,7 @@
 #![allow(clippy::float_arithmetic, reason = "Too restrictive for this crate.")]
 #![allow(clippy::implicit_return, reason = "Implicit returns are idiomatic in Rust.")]
 #![allow(clippy::indexing_slicing, reason = "Too restrictive for this crate.")]
+#![allow(clippy::integer_division_remainder_used, reason = "Too restrictive for this crate.")]
 #![allow(
     clippy::min_ident_chars,
     reason = "Whilst short variable names are not always ideal they are often clear in context."
