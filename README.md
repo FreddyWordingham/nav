@@ -18,6 +18,7 @@
 - **2D Transformations**: Full implementation of the dihedral group D4 (rotations and reflections)
 - **Type Conversions**: Convert between string representations, enum values, and numeric types
 - **Mathematical Operations**: Compose transformations and apply them to directions
+- **Array Transformations (optional)**: Apply transformations to `ndarray` 2D arrays
 - **No Standard Library Requirement**: Core-only implementation for embedded systems compatibility
 - **Comprehensive Testing**: 100% test coverage
 
@@ -28,6 +29,13 @@ Add this to your `Cargo.toml`:
 ```toml
 [dependencies]
 nav = "0.1.5"
+```
+
+To enable array transformation support (adds `ndarray` dependency):
+
+```toml
+[dependencies]
+nav = { version = "0.1.5", features = ["array"] }
 ```
 
 ## Usage
@@ -109,6 +117,47 @@ assert_eq!(Direction::North * Transform::FlipHorizontal, Direction::North);
 assert_eq!(Direction::East * Transform::FlipHorizontal, Direction::West);
 ```
 
+### Array Transformation (requires `array` feature)
+
+Apply geometric transformations to 2D arrays using the `ndarray` crate:
+
+```rust
+use nav::Transform;
+use ndarray::{arr2, Array2};
+
+// Enable the "array" feature in Cargo.toml:
+// nav = { version = "0.1.5", features = ["array"] }
+
+// Create a 2D array
+let arr = arr2(&[
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+]);
+
+// Apply transformations
+let rotated = Transform::Rotate90 * &arr;
+let flipped = Transform::FlipHorizontal * &arr;
+
+assert_eq!(
+    rotated,
+    arr2(&[
+        [7, 4, 1],
+        [8, 5, 2],
+        [9, 6, 3],
+    ])
+);
+
+assert_eq!(
+    flipped,
+    arr2(&[
+        [3, 2, 1],
+        [6, 5, 4],
+        [9, 8, 7],
+    ])
+);
+```
+
 ### Working with All Values
 
 The library provides constants for all directions and transforms:
@@ -141,6 +190,12 @@ The `Transform` enum uses single character symbols for string representation:
 | FlipDiagonal     | /      | Reflection about main diagonal         | (y, x)          |
 | FlipVertical     | -      | Reflection about horizontal axis       | (x, -y)         |
 | FlipAntiDiagonal | \\     | Reflection about anti-diagonal         | (-y, -x)        |
+
+## Features
+
+This crate provides the following features:
+
+- **array**: Enables array transformation functionality using the `ndarray` crate
 
 ## Applications
 

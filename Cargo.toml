@@ -8,6 +8,10 @@ description = "A Rust library for handling cardinal directions and transformatio
 keywords = ["direction", "cardinal-directions", "compass", "rotation"]
 categories = ["algorithms", "data-structures", "science"]
 
+[features]
+default = []
+array = ["dep:ndarray"] # Optional feature for ndarray support
+
 [dependencies]
-ndarray = "0.16.1"
+ndarray = { version = "0.16.1", optional = true }
 num_enum = "0.7.3"

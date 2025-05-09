@@ -4,6 +4,8 @@
 
 use num_enum::{IntoPrimitive, TryFromPrimitive};
 
+#[cfg(feature = "array")]
+mod arr2;
 mod display;
 mod from_str;
 mod mul;
