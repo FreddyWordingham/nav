@@ -15,7 +15,7 @@ The `array_transformations` example demonstrates how to use the Nav crate with t
 You can run the example using:
 
 ```bash
-cargo run --example array_transformations --features array
+cargo run --example array_transform --features array
 ```
 
 ### Expected Output

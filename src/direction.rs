@@ -3,6 +3,8 @@
 //! The `direction` module provides the `Direction` enum, which represents the four cardinal directions: North, East, South, and West.
 
 use num_enum::{IntoPrimitive, TryFromPrimitive};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 use std::{
     fmt::{Display, Formatter, Result as FmtResult},
     ops::{Mul, MulAssign, Neg},
@@ -21,6 +23,7 @@ pub const ALL_DIRECTIONS: [Direction; 4] = [
 
 /// The four cardinal directions: North, East, South, and West.
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash, IntoPrimitive, TryFromPrimitive)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u8)]
 #[expect(clippy::exhaustive_enums, reason = "This enum is exhaustive and will not be extended.")]
 pub enum Direction {

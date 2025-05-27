@@ -3,6 +3,8 @@
 //! The `transform` module provides the `Transform` enum, which represents the dihedral group D4.
 
 use num_enum::{IntoPrimitive, TryFromPrimitive};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "array")]
 mod arr2;
@@ -25,6 +27,7 @@ pub const ALL_TRANSFORMS: [Transform; 8] = [
 
 /// The eight transformations that can be applied to a 2D grid.
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash, IntoPrimitive, TryFromPrimitive)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u8)]
 #[expect(clippy::exhaustive_enums, reason = "This enum is exhaustive and will not be extended.")]
 pub enum Transform {

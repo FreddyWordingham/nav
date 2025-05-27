@@ -10,8 +10,10 @@ categories = ["algorithms", "data-structures", "science"]
 
 [features]
 default = []
-array = ["dep:ndarray"] # Optional feature for ndarray support
+array = ["dep:ndarray"]
+serde = ["dep:serde"]
 
 [dependencies]
 ndarray = { version = "0.16.1", optional = true }
 num_enum = "0.7.3"
+serde = { version = "1.0.219", features = ["derive"], optional = true }
