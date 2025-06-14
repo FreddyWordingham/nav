@@ -28,14 +28,14 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-nav = "0.1.5"
+nav = "0.2.0"
 ```
 
 To enable array transformation support (adds `ndarray` dependency):
 
 ```toml
 [dependencies]
-nav = { version = "0.1.5", features = ["array"] }
+nav = { version = "0.2.0", features = ["array"] }
 ```
 
 ## Usage
