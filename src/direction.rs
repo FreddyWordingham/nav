@@ -25,7 +25,6 @@ pub const ALL_DIRECTIONS: [Direction; 4] = [
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash, IntoPrimitive, TryFromPrimitive)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u8)]
-#[expect(clippy::exhaustive_enums, reason = "This enum is exhaustive and will not be extended.")]
 pub enum Direction {
     /// Upwards
     North = 0,
@@ -39,14 +38,12 @@ pub enum Direction {
 
 impl Direction {
     /// Returns true if the `Direction` is `North` or `South`.
-    #[inline]
     #[must_use]
     pub const fn is_vertical(self) -> bool {
         matches!(self, Self::North | Self::South)
     }
 
     /// Returns true if the `Direction` is `East` or `West`.
-    #[inline]
     #[must_use]
     pub const fn is_horizontal(self) -> bool {
         matches!(self, Self::East | Self::West)
@@ -62,12 +59,6 @@ impl Mul<Transform> for Direction {
     ///
     /// This function uses `unwrap()` internally but will never panic because the
     /// transformation math guarantees that the result will always be a valid `Direction` value (0-3).
-    #[inline]
-    #[expect(clippy::min_ident_chars, reason = "The names `a` and `b` are used as math variables.")]
-    #[expect(
-        clippy::unwrap_used,
-        reason = "The math guarantees that the result will never trigger the unwrap."
-    )]
     fn mul(self, rhs: Transform) -> Self::Output {
         let v: u8 = self.into();
         Self::try_from(match rhs {
@@ -83,9 +74,8 @@ impl Mul<Transform> for Direction {
         .unwrap()
     }
 }
+
 impl MulAssign<Transform> for Direction {
-    /// Applies a `Transform` to the current `Direction`.
-    #[inline]
     fn mul_assign(&mut self, rhs: Transform) {
         *self = *self * rhs;
     }
@@ -93,7 +83,7 @@ impl MulAssign<Transform> for Direction {
 
 impl Neg for Direction {
     type Output = Self;
-    #[inline]
+
     fn neg(self) -> Self::Output {
         match self {
             Self::North => Self::South,
@@ -107,8 +97,6 @@ impl Neg for Direction {
 impl FromStr for Direction {
     type Err = &'static str;
 
-    #[inline]
-    #[expect(clippy::min_ident_chars, reason = "The variable `s` is clearly a string.")]
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s.to_uppercase().as_str() {
             "N" | "NORTH" => Ok(Self::North),
@@ -121,14 +109,12 @@ impl FromStr for Direction {
 }
 
 impl Display for Direction {
-    #[inline]
-    #[expect(clippy::min_ident_chars, reason = "This is a common pattern in Rust.")]
-    fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {
+    fn fmt(&self, fmt: &mut Formatter<'_>) -> FmtResult {
         match *self {
-            Self::North => write!(f, "N"),
-            Self::East => write!(f, "E"),
-            Self::South => write!(f, "S"),
-            Self::West => write!(f, "W"),
+            Self::North => write!(fmt, "N"),
+            Self::East => write!(fmt, "E"),
+            Self::South => write!(fmt, "S"),
+            Self::West => write!(fmt, "W"),
         }
     }
 }
